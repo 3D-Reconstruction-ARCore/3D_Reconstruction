@@ -79,18 +79,18 @@ namespace GoogleARCore.Examples.HelloAR
             _UpdateApplicationLifecycle();
 
             // Hide snackbar when currently tracking at least one plane.
-            Session.GetTrackables<DetectedPlane>(m_AllPlanes);
-            bool showSearchingUI = true;
-            for (int i = 0; i < m_AllPlanes.Count; i++)
-            {
-                if (m_AllPlanes[i].TrackingState == TrackingState.Tracking)
-                {
-                    showSearchingUI = false;
-                    break;
-                }
-            }
-
-            SearchingForPlaneUI.SetActive(showSearchingUI);
+//            Session.GetTrackables<DetectedPlane>(m_AllPlanes);
+//            bool showSearchingUI = true;
+//            for (int i = 0; i < m_AllPlanes.Count; i++)
+//            {
+//                if (m_AllPlanes[i].TrackingState == TrackingState.Tracking)
+//                {
+//                    showSearchingUI = false;
+//                    break;
+//                }
+//            }
+//
+//            SearchingForPlaneUI.SetActive(showSearchingUI);
 
             // If the player has not touched the screen, we are done with this update.
             Touch touch;
@@ -112,14 +112,14 @@ namespace GoogleARCore.Examples.HelloAR
             {
                 // Use hit pose and camera pose to check if hittest is from the
                 // back of the plane, if it is, no need to create the anchor.
-                if ((hit.Trackable is DetectedPlane) &&
-                    Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position,
-                        hit.Pose.rotation * Vector3.up) < 0)
-                {
-                    Debug.Log("Hit at back of the current DetectedPlane");
-                }
-                else
-                {
+//                if ((hit.Trackable is DetectedPlane) &&
+//                    Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position,
+//                        hit.Pose.rotation * Vector3.up) < 0)
+//                {
+//                    Debug.Log("Hit at back of the current DetectedPlane");
+//                }
+//                else
+//                {
                     // Instantiate Andy model at the hit pose.
                     var andyObject = Instantiate(AndyAndroidPrefab, hit.Pose.position, hit.Pose.rotation);
 
@@ -144,7 +144,7 @@ namespace GoogleARCore.Examples.HelloAR
 						               "Z = " + z_cord.ToString();
 
 					_ShowAndroidToastMessage(mymessage);
-                }
+//                }
             }
         }
 

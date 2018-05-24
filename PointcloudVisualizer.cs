@@ -33,6 +33,12 @@ namespace GoogleARCore.Examples.Common
 
         private Vector3[] m_Points = new Vector3[k_MaxPointCount];
 
+		int width = Screen.width;
+
+		int height = Screen.height;
+
+		TrackableHitFlags raycastFilter = TrackableHitFlags.FeaturePoint;
+
         /// <summary>
         /// Unity start.
         /// </summary>
@@ -62,6 +68,15 @@ namespace GoogleARCore.Examples.Common
                 {
                     indices[i] = i;
                 }
+
+				for (int itr1 = 0; itr1 <= width; itr1+=100) {
+					for (int itr2 = 0; itr2 <= height; itr2+=100) {
+						TrackableHit hit;
+						if (Frame.Raycast (itr1, itr2, raycastFilter, out hit)) {
+							hit.Trackable.CreateAnchor(hit.Pose);
+						}
+					}
+				}
 
                 m_Mesh.Clear();
                 m_Mesh.vertices = m_Points;
